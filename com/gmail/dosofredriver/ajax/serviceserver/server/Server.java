@@ -1,5 +1,3 @@
-//test git
-
 package com.gmail.dosofredriver.ajax.serviceserver.server;
 
 import javax.net.ServerSocketFactory;
