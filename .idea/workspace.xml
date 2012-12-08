@@ -3,12 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e737827f-8388-49b1-83ca-3d20c2702ba7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/server/Server.java" afterPath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/server/Server.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java" afterPath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java" afterPath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AJAXServer.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/fragment.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354960639138" ignored="false" />
-    <file path="/Dummy.txt" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354976946784" ignored="false" />
+    <file path="/Dummy.txt" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354977061730" ignored="false" />
     <file path="/Server.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354963102963" ignored="false" />
     <file path="/Service.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354963357107" ignored="false" />
     <file path="/README" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354964830178" ignored="false" />
@@ -105,10 +107,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Server.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="17" selection-start="1139" selection-end="1139" vertical-scroll-proportion="0.3316583">
+            <state line="13" column="30" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -119,16 +121,16 @@
       <file leaf-file-name="Service.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="34" selection-start="476" selection-end="476" vertical-scroll-proportion="0.0">
+            <state line="11" column="2" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IsNotAnnotatedException.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="IsNotAnnotatedException.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/exceptions/IsNotAnnotatedException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="41" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0">
+            <state line="9" column="41" selection-start="350" selection-end="350" vertical-scroll-proportion="0.38636363">
               <folding />
             </state>
           </provider>
@@ -137,7 +139,7 @@
       <file leaf-file-name="Test.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="28" selection-start="756" selection-end="756" vertical-scroll-proportion="0.0">
+            <state line="28" column="28" selection-start="790" selection-end="790" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -529,7 +531,11 @@
       <created>1354964844084</created>
       <updated>1354964844084</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="New server model">
+      <created>1354976995788</created>
+      <updated>1354976995788</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -564,12 +570,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14262949" sideWeight="0.21794872" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32591414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32695374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14262949" sideWeight="0.21794872" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988048" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3984064" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18759936" sideWeight="0.67408586" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18759936" sideWeight="0.67304623" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="154" y="92" width="1120" height="584" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -702,7 +708,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="28" selection-start="756" selection-end="756" vertical-scroll-proportion="0.0">
+        <state line="28" column="28" selection-start="790" selection-end="790" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -714,7 +720,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="34" selection-start="476" selection-end="476" vertical-scroll-proportion="0.0">
+        <state line="11" column="2" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -726,19 +732,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/exceptions/IsNotAnnotatedException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="41" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="17" selection-start="1139" selection-end="1139" vertical-scroll-proportion="0.3316583">
+        <state line="13" column="30" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/exceptions/IsNotAnnotatedException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="41" selection-start="350" selection-end="350" vertical-scroll-proportion="0.38636363">
+          <folding />
         </state>
       </provider>
     </entry>

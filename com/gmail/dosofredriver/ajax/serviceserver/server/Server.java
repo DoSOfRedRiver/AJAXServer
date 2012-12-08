@@ -1,6 +1,5 @@
 package com.gmail.dosofredriver.ajax.serviceserver.server;
 
-import javax.net.ServerSocketFactory;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -10,7 +9,6 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.

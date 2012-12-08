@@ -1,7 +1,5 @@
 package com.gmail.dosofredriver.ajax.serviceserver.service;
 
-import com.gmail.dosofredriver.ajax.serviceserver.service.annotations.ServiceMethod;
-import com.gmail.dosofredriver.ajax.serviceserver.service.exceptions.IsNotAnnotatedException;
 import com.gmail.dosofredriver.ajax.serviceserver.util.parser.Parser;
 
 import java.lang.reflect.Method;
