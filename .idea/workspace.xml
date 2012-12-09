@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e737827f-8388-49b1-83ca-3d20c2702ba7" name="Default" comment="">
+    <list default="true" id="e737827f-8388-49b1-83ca-3d20c2702ba7" name="Default" comment="- Update server model:&#10;   -  Multithreading.&#10;&#10;- Add specific logger.&#10;   - HTML formatter at util.logger.HTMLFormatter.&#10;   - Logger wrapper at util.logger.ServerLogger.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/logger/HTMLFormatter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/logger/ServerLogger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Parser.java" afterPath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Parser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/server/Server.java" afterPath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/server/Server.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java" afterPath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java" afterPath="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AJAXServer.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354960639138" ignored="false" />
-    <file path="/Dummy.txt" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354977664750" ignored="false" />
-    <file path="/Server.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354977696058" ignored="false" />
-    <file path="/Service.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354963357107" ignored="false" />
+    <file path="/fragment.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1355056495685" ignored="false" />
+    <file path="/Dummy.txt" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1355061479130" ignored="false" />
+    <file path="/Server.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1355061060145" ignored="false" />
+    <file path="/Service.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1355054323009" ignored="false" />
     <file path="/README" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354964830178" ignored="false" />
-    <file path="/Test.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354964887367" ignored="false" />
+    <file path="/Test.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1355054254875" ignored="false" />
     <file path="/IsNotAnnotatedException.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354966541823" ignored="false" />
+    <file path="/Parser.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1354982194155" ignored="false" />
+    <file path="/HTMLFormatter.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1355058761916" ignored="false" />
+    <file path="/ServerLogger.java" changelist="e737827f-8388-49b1-83ca-3d20c2702ba7" time="1355060116636" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +41,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -68,7 +76,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -99,8 +107,10 @@
       <file leaf-file-name="Parser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="94" selection-start="481" selection-end="481" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="23" column="36" selection-start="844" selection-end="844" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,26 +118,39 @@
       <file leaf-file-name="Server.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="21" selection-start="92" selection-end="92" vertical-scroll-proportion="0.08457711">
+            <state line="15" column="30" selection-start="556" selection-end="556" vertical-scroll-proportion="0.33333334">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Service.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java">
+      <file leaf-file-name="Logger.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/util/logging/Logger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="2" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
+            <state line="315" column="25" selection-start="13879" selection-end="13879" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IsNotAnnotatedException.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/exceptions/IsNotAnnotatedException.java">
+      <file leaf-file-name="HTMLFormatter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/logger/HTMLFormatter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="39" selection-start="417" selection-end="417" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="54" column="14" selection-start="1390" selection-end="1391" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerLogger.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/logger/ServerLogger.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="0" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,8 +158,12 @@
       <file leaf-file-name="Test.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="28" selection-start="790" selection-end="790" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="40" column="0" selection-start="1132" selection-end="1132" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#534#541#0" expanded="true" />
+                <element signature="e#607#615#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -175,11 +202,13 @@
         <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/annotations/ServiceMethod.java" />
         <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/annotations/ServiceClass.java" />
         <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/ResultSet.java" />
-        <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Parser.java" />
-        <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java" />
-        <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java" />
         <option value="$PROJECT_DIR$/README" />
         <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/exceptions/IsNotAnnotatedException.java" />
+        <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Parser.java" />
+        <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java" />
+        <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/logger/HTMLFormatter.java" />
+        <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java" />
+        <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/logger/ServerLogger.java" />
         <option value="$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/server/Server.java" />
       </list>
     </option>
@@ -222,16 +251,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -282,7 +301,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AJAXServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AJAXServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="serviceserver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logger" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -346,6 +391,16 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -362,14 +417,15 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="last.edited.regexp" value="get(String_lol int_4)" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="GoToClass.includeLibraries" value="false" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.gmail.dosofredriver.ajax.serviceserver.util" />
       <recent name="com.gmail.dosofredriver.ajax.serviceserver.service" />
     </key>
   </component>
@@ -404,6 +460,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -429,19 +498,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -535,7 +591,11 @@
       <created>1354977097564</created>
       <updated>1354977097564</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update server model">
+      <created>1354977961868</created>
+      <updated>1354977961868</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -570,17 +630,17 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14262949" sideWeight="0.21794872" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32695374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14262949" sideWeight="0.21794872" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988048" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3984064" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18759936" sideWeight="0.67145133" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18759936" sideWeight="0.67304623" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="154" y="92" width="1120" height="584" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936507" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -623,7 +683,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="New server model" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Update server model:&#10;   -  Multithreading.&#10;&#10;- Add specific logger.&#10;   - HTML formatter at util.logger.HTMLFormatter.&#10;   - Logger wrapper at util.logger.ServerLogger." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -639,6 +699,8 @@
     <MESSAGE value="Trying to upload project to Github" />
     <MESSAGE value="Fuck dat shit" />
     <MESSAGE value="New server model" />
+    <MESSAGE value="Update server model" />
+    <MESSAGE value="- Update server model:&#10;   -  Multithreading.&#10;&#10;- Add specific logger.&#10;   - HTML formatter at util.logger.HTMLFormatter.&#10;   - Logger wrapper at util.logger.ServerLogger." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -648,67 +710,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="28" selection-start="756" selection-end="756" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/nio/ByteBuffer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="544" column="23" selection-start="15150" selection-end="15153" vertical-scroll-proportion="-3.23993" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/jre/lib/rt.jar!/javax/net/ServerSocketFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="51" selection-start="178" selection-end="178" vertical-scroll-proportion="0.113902844" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/nio/channels/Selector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="205" column="22" selection-start="8149" selection-end="8149" vertical-scroll-proportion="0.028475711" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/nio/Buffer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="347" column="24" selection-start="10986" selection-end="10986" vertical-scroll-proportion="1.1122448" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/nio/channels/SelectionKey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="211" column="24" selection-start="7709" selection-end="7709" vertical-scroll-proportion="-4.279732" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/annotations/ServiceClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="3" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/annotations/ServiceMethod.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/util/logging/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="41" selection-start="1618" selection-end="1755" vertical-scroll-proportion="0.029310346" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="94" selection-start="481" selection-end="481" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="28" selection-start="790" selection-end="790" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -718,16 +722,30 @@
         <state line="4" column="35" selection-start="210" selection-end="210" vertical-scroll-proportion="0.113144755" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java">
+    <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="2" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
+        <state line="0" column="73" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/nio/Buffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="347" column="24" selection-start="10986" selection-end="10986" vertical-scroll-proportion="0.67164177">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/util/concurrent/Executors.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="73" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0" />
+        <state line="87" column="34" selection-start="2685" selection-end="2685" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="66" selection-start="567" selection-end="567" vertical-scroll-proportion="-0.92783505">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/service/exceptions/IsNotAnnotatedException.java">
@@ -737,9 +755,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/util/logging/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="13" selection-start="1338" selection-end="1338" vertical-scroll-proportion="0.7724138">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/util/logging/LogManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="348" column="11" selection-start="14081" selection-end="14081" vertical-scroll-proportion="0.06896552">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/src.zip!/java/util/logging/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="315" column="25" selection-start="13879" selection-end="13879" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_03/jre/lib/rt.jar!/sun/net/www/protocol/http/logging/HttpLogFormatter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="11" selection-start="372" selection-end="372" vertical-scroll-proportion="0.2637931">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="0" selection-start="1132" selection-end="1132" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#534#541#0" expanded="true" />
+            <element signature="e#607#615#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/logger/HTMLFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="14" selection-start="1390" selection-end="1391" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/logger/ServerLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/util/parser/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="36" selection-start="844" selection-end="844" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/com/gmail/dosofredriver/ajax/serviceserver/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="21" selection-start="92" selection-end="92" vertical-scroll-proportion="0.08457711">
+        <state line="15" column="30" selection-start="556" selection-end="556" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>

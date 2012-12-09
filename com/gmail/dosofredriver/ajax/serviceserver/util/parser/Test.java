@@ -5,6 +5,8 @@ import com.sun.istack.internal.logging.Logger;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 
 /**
@@ -35,33 +37,7 @@ public class Test {
     }
 
     public static void main (String [] args) throws Exception{
-        Test t = new Test();
-
-
-
-        Logger logger = Logger.getLogger(Test.class);
-        logger.log(Level.ALL, "test log");
-
-        System.out.println(logger);
-
-        t.hm.add(Class.forName("java.lang.String"));
-        t.hm.add(Class.forName("java.lang.Integer"));
-        t.hm.add(Class.forName("java.lang.Character"));
-
-        t.hn.add("lol");
-        t.hn.add("14");
-        t.hn.add("p");
-
-        Class c = Class.forName("java.lang.String");
-
-        t.hn.get(1);
-
-
-        Method m = Test.class.getMethod("toString", t.typesToArray(t.hm));
-        Method m1 = Class.forName("java.lang.Integer").getMethod("valueOf", Class.forName("java.lang.String"));
-        Method m2 = Class.forName("java.lang.Character").getMethod("valueOf", Class.forName("java.lang.String"));
-        System.out.println(m);
-        System.out.println(m.invoke(Test.class, t.hn.get(0), m1.invoke("java.lang.Integer",t.hn.get(1)), m2.invoke("java.lang.Character",t.hn.get(2))));
+        ExecutorService es = Executors.newFixedThreadPool(8);
 
     }
 }

@@ -1,5 +1,6 @@
 package com.gmail.dosofredriver.ajax.serviceserver.server;
-//cartoons
+
+import com.gmail.dosofredriver.ajax.serviceserver.util.logger.ServerLogger;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -10,6 +11,9 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Level;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,19 +22,66 @@ import java.nio.channels.SocketChannel;
  * Time: 15:15
  * To change this template use File | Settings | File Templates.
  */
-public class Server {
+public class Server implements Runnable {
+    public final static int DEFAULT_POOL_SIZE = 8;
+
     private volatile boolean stopFlag = false;
-    private ByteBuffer          buffer = ByteBuffer.allocate(16384);
+    private volatile boolean debugmode;
+
+    private ServerLogger logger;
+
+    private ExecutorService     executor;
+    private Selector            selector;
+    private ByteBuffer          buffer;
     private ServerSocketChannel ssc;
     private ServerSocket        ss;
-    private int port;
 
-    public Server(int port) {
-        this.port = port;
-    }
+    private int                 port;
+
 
     public Server() {
         this.port = 777; //lucky number as default port
+        startServer(DEFAULT_POOL_SIZE);
+
+        try {
+            logger = new ServerLogger(this.getClass().getName());
+        } catch (IOException e) {
+            System.err.println("WARNING: FAILED TO CREATE LOGGER!");
+        }
+
+        if (logger == null) {
+            debugmode = false;
+        }
+    }
+
+    public Server(int port) {
+        this.port   = port;
+        startServer(DEFAULT_POOL_SIZE);
+
+        try {
+            logger = new ServerLogger(this.getClass().getName());
+        } catch (IOException e) {
+            System.err.println("WARNING: FAILED TO CREATE LOGGER!");
+        }
+
+        if (logger == null) {
+            debugmode = false;
+        }
+    }
+
+    public Server(int port, int pool_size) {
+        this.port = port;
+        startServer(pool_size);
+
+        try {
+            logger = new ServerLogger(this.getClass().getName());
+        } catch (IOException e) {
+            System.err.println("WARNING: FAILED TO CREATE LOGGER!");
+        }
+
+        if (logger == null) {
+            debugmode = false;
+        }
     }
 
     /*
@@ -38,7 +89,10 @@ public class Server {
      * create channel and start server for listening
      * incoming connections.
      */
-    private void startServer() {
+    private void startServer(int pool_size) {
+        executor    = Executors.newFixedThreadPool(pool_size);
+        buffer      = ByteBuffer.allocate(16384);
+
         try {
             ssc = ServerSocketChannel.open();
             ssc.configureBlocking(false);
@@ -46,29 +100,40 @@ public class Server {
             ss = ssc.socket();
             ss.bind(new InetSocketAddress(port));
 
-            Selector selector = Selector.open();
+            selector = Selector.open();
 
             ssc.register(selector, SelectionKey.OP_ACCEPT);
 
-            System.out.println("Listening on port: ");
+            System.out.println("Listening on port: " + port);
+
+            if (debugmode) {
+                logger.log(Level.INFO, "Listening on port: " + port);
+            }
 
             while (!stopFlag) {
                 if (selector.select() == 0) {
                     continue;
                 }
 
-                for (SelectionKey key : selector.keys()) {
-                    if ((key.readyOps() & SelectionKey.OP_ACCEPT) == SelectionKey.OP_ACCEPT) {
-                        onAccept(selector);
-                    } else if ((key.readyOps() & SelectionKey.OP_READ) == SelectionKey.OP_READ) {
-                        onRead(key);
-                    }
-                }
+                executor.execute(this);
             }
         } catch (IOException e) {
-            System.err.println(e);
+            if (debugmode) {
+                logger.log(Level.SEVERE, "Error in main program cycle: " + e);
+            }
         }
 
+    }
+
+    @Override
+    public void run() {
+        for (final SelectionKey key : selector.keys()) {
+            if ((key.readyOps() & SelectionKey.OP_ACCEPT) == SelectionKey.OP_ACCEPT) {
+                onAccept(selector);
+            } else if ((key.readyOps() & SelectionKey.OP_READ) == SelectionKey.OP_READ) {
+                onRead(key);
+            }
+        }
     }
 
     /*
@@ -77,7 +142,7 @@ public class Server {
      * @param key
      *              Selection key that used to identify connection.
      */
-    private void onRead(SelectionKey key) throws IOException {
+    private void onRead(SelectionKey key) {
         SocketChannel sc = null;
 
         try {
@@ -93,9 +158,17 @@ public class Server {
             }
         } catch (IOException e) {
             key.cancel();
-            sc.close();
+            try {
+                sc.close();
+            } catch (IOException e1) {
+                if (debugmode) {
+                    logger.log(Level.WARNING, "Error while closing socket");
+                }
+            }
 
-            System.out.println("Closed: " + sc);
+            if (debugmode) {
+                logger.log(Level.WARNING, "Closed: " + sc);
+            }
         }
     }
 
@@ -106,13 +179,21 @@ public class Server {
      * @param selector
      *          Selector for channel registration.
      */
-    private void onAccept(Selector selector) throws IOException {
-        Socket s = ss.accept();
-        System.out.println("Incoming connection from: " + s);
+    private void onAccept(Selector selector) {
+        try {
+            Socket s = ss.accept();
+            System.out.println("Incoming connection from: " + s);
 
-        SocketChannel sc = s.getChannel();
-        sc.configureBlocking(false);
-        sc.register(selector, SelectionKey.OP_READ);
+            if(debugmode) {
+                logger.log(Level.INFO, "Incoming connection from: " + s);
+            }
+
+            SocketChannel sc = s.getChannel();
+            sc.configureBlocking(false);
+            sc.register(selector, SelectionKey.OP_READ);
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "onAccept: " + e);
+        }
     }
 
 
@@ -134,9 +215,11 @@ public class Server {
             s = sc.socket();
             s.close();
         } catch( IOException e ) {
-            System.err.println( "Error closing socket: " + s + "\nby\n " + e);    //log dat
+            logger.log(Level.WARNING, "Error closing socket: " + s + "\nby\n " + e);
         }
     }
 
-
+    public void setDebugmode(boolean debugmode) {
+        this.debugmode = debugmode;
+    }
 }

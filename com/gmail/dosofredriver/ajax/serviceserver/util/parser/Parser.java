@@ -1,5 +1,6 @@
 package com.gmail.dosofredriver.ajax.serviceserver.util.parser;
 
+import java.nio.ByteBuffer;
 import java.util.StringTokenizer;
 import java.util.Vector;
 import java.util.regex.Matcher;
@@ -31,19 +32,31 @@ public class Parser {
      */
     public Parser(String source) {
         this.source = source;
-        matcher = pattern.matcher(source);
         parse();
     }
 
-    public void parse() {
-        try {
-            matcher.find();
-            getParameters(matcher.group());
-        } catch (IllegalStateException e) {
-            System.err.println("Illegal state exception. Unknown command format!");
-        } catch (ClassNotFoundException e) {
-            System.err.println("Cant cast given type" + e);
+    public Parser(ByteBuffer source) {
+        source.flip();
+
+        this.source = byteBufferToString(source);
+        parse();
+    }
+
+    /*
+     * No comments.
+     */
+    private String byteBufferToString(ByteBuffer source) {
+        String result = "";
+
+        for (int i=0; i<source.limit(); i++) {
+            result += source.get(i);
         }
+
+        return result;
+    }
+
+    public void parse() {
+
     }
 
     private void getParameters(String prototype) throws ClassNotFoundException {

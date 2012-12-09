@@ -15,7 +15,6 @@ import java.util.Collection;
  * @see com.gmail.dosofredriver.ajax.serviceserver.util.parser.Parser;
  */
 public class Service {
-    public final static String DEFAULT_CONTROLLER_NAME = "InvokeController";
 
     /*
     *  Initializes a new <code>Service</code> object, that uses for dynamic
@@ -24,7 +23,6 @@ public class Service {
     *  variable as default name of controller that should be used.
     */
     public Service() {
-        register(DEFAULT_CONTROLLER_NAME);
     }
 
     /*
