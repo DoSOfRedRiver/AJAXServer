@@ -25,7 +25,7 @@ public class ServerLogger {
     }
 
     private void init(String name, String filename) throws IOException {
-        FileHandler fh = new FileHandler();
+        FileHandler fh = new FileHandler(filename);
 
         fh.setFormatter(new HTMLFormatter());
         logger = Logger.getLogger(name);
