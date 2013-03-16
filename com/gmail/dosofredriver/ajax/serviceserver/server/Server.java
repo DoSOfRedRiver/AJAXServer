@@ -26,8 +26,8 @@ public class Server {
     public final static int DEFAULT_POOL_SIZE   = 8;
     public final static int DEFAULT_PORT        = 777;
 
-    private volatile boolean stopFlag = false;
     private volatile boolean debugmode;
+    private volatile long    controlUnit;
 
     private RequestHandler  requestHandler;
     private ServerLogger    logger;
@@ -35,7 +35,7 @@ public class Server {
     private AsynchronousServerSocketChannel     assc;
     private AsynchronousChannelGroup            group;
 
-    private int                 port;
+    private int     port;
 
 
     public Server() {
@@ -72,25 +72,29 @@ public class Server {
      *          Size of the thread pool
      *
      */
-    private void init(int port, int pool_size, RequestHandler requestHandler) {
+    private void init(int port, final int pool_size, RequestHandler requestHandler) {
         setRequestHandler(requestHandler);
         this.port = port;
         debugmode = true;
         createLogger();
 
-        try {
-            start(pool_size);
-        } catch (InterruptedException | IOException e) {
-            System.err.println("WARNING: An error occupied, while starting server. For more info see log.");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    start(pool_size);
+                } catch (IOException | InterruptedException e) {
+                    System.err.println("WARNING: An error occupied, while starting server. For more info see log.");
 
-            if (debugmode) {
-                logger.log(Level.SEVERE, "Error while stating server: \n" + e);
-            } else {
-                e.printStackTrace(); //if logger is unavailable
+                    if (debugmode) {
+                        logger.log(Level.SEVERE, "Error while stating server", e);
+                    } else {
+                        e.printStackTrace(); //if logger is unavailable
+                    }
+                }
             }
-        }
+        }).start();
     }
-
 
 
 
@@ -103,6 +107,8 @@ public class Server {
      *              Determines the size of thread pool.
      */
     public void start(int pool_size) throws IOException, InterruptedException {
+        controlUnit = Long.MAX_VALUE;
+
         group = AsynchronousChannelGroup.withFixedThreadPool(pool_size, new ThreadFactory() {
             @Override
             @NotNull
@@ -116,8 +122,9 @@ public class Server {
         } catch (BindException e) {
             System.err.println("An bind exception occupied. Possible port already in use. \n" + e);
             if (debugmode) {
-                logger.log(Level.SEVERE,"An bind exception occupied. Possible port already in use. \n" + e);
+                logger.log(Level.SEVERE,"An bind exception occupied. Possible port already in use.", e);
             }
+
             System.exit(0);
         }
 
@@ -131,28 +138,7 @@ public class Server {
             @Override
             public void completed(AsynchronousSocketChannel result, Object attachment) {
                 assc.accept(null, this);
-                //todo handle connection
-                if (requestHandler != null) {
-                    result.write(requestHandler.initialOutcomingRequest());
-                    requestHandler.incomingRequest(result);
-                    result.write(requestHandler.finalOutcomingRequest());
-
-                } else {
-                    System.out.println("WARNING! The requestHandler is not set. All requests will be dropped!");
-                    if (debugmode) {
-                        logger.log(Level.SEVERE, "WARNING! The requestHandler is not set. All requests will be dropped!");
-                    }
-                }
-                try {
-                    System.out.println("Connection from: " + result.getRemoteAddress());
-                    if (debugmode) {
-                        logger.log(Level.INFO, "Connection from: " + result.getRemoteAddress());
-                    }
-                } catch (Exception e) {
-                    if (debugmode) {
-                        logger.log(Level.WARNING, "An error on complete(): \n" + e);
-                    }
-                }
+                handleComplete(result, attachment);
             }
 
             @Override
@@ -161,11 +147,24 @@ public class Server {
             }
         });
 
-        group.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS);
+        group.awaitTermination(controlUnit, TimeUnit.SECONDS);
     }
 
+    /*
+     * Stops server
+     */
     public void stop() {
-
+        try {
+            controlUnit = 0;
+            assc.close();
+        } catch (IOException e) {
+            System.out.println("An error occupied while stoping server. For more info see log.");
+            if (debugmode) {
+                logger.log(Level.SEVERE, "An error occupied while stoping server. \n" + e );
+            } else {
+                e.printStackTrace();
+            }
+        }
     }
 
     /*
@@ -180,6 +179,34 @@ public class Server {
 
         if (logger == null) {
             debugmode = false;
+        }
+    }
+
+    /*
+     *  Handles incoming connection. This method is invoked directly from
+     *  CompletionHandler's complete method.
+     */
+    private void handleComplete(AsynchronousSocketChannel result, Object attachment) {
+        if (requestHandler != null) {
+            //result.write(requestHandler.initialOutcomingRequest());
+            requestHandler.incomingRequest(result);
+            //result.write(requestHandler.finalOutcomingRequest());
+        } else {
+            System.out.println("WARNING! The requestHandler is not set. All requests will be dropped!");
+            if (debugmode) {
+                logger.log(Level.SEVERE, "WARNING! The requestHandler is not set. All requests will be dropped!");
+            }
+        }
+
+        try {
+            System.out.println("Connection from: " + result.getRemoteAddress());
+            if (debugmode) {
+                logger.log(Level.INFO, "Connection from: " + result.getRemoteAddress());
+            }
+        } catch (Exception e) {
+            if (debugmode) {
+                logger.log(Level.WARNING, "An error on complete(): \n" + e);
+            }
         }
     }
 

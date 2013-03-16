@@ -12,12 +12,12 @@ import java.util.logging.Logger;
  * @author DoSOfRR
  */
 public class ServerLogger {
-    public final static String DEFAUL_LOG_NAME = "log.html";
+    public final static String DEFAULT_LOG_NAME = "log.html";
 
     private Logger logger;
 
     public ServerLogger(String name) throws IOException {
-        init(name, DEFAUL_LOG_NAME);
+        init(name, DEFAULT_LOG_NAME);
     }
 
     public ServerLogger(String name, String filename) throws IOException {
@@ -35,5 +35,9 @@ public class ServerLogger {
 
     public void log(Level level, String msg) {
         logger.log(level, msg);
+    }
+
+    public void log(Level level, String msg, Throwable ex) {
+        logger.log(level, msg, ex);
     }
 }

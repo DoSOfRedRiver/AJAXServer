@@ -13,7 +13,7 @@ import java.util.logging.LogRecord;
  * Класс, преобразующий лог в формат HTML.
  *
  */
-public class HTMLFormatter extends Formatter {
+class HTMLFormatter extends Formatter {
 
     /**
      * Return head of HTML file.

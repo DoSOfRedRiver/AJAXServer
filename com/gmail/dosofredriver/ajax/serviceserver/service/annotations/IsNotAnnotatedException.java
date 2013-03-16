@@ -1,4 +1,4 @@
-package com.gmail.dosofredriver.ajax.serviceserver.service.exceptions;
+package com.gmail.dosofredriver.ajax.serviceserver.service.annotations;
 
 /**
  * This exception указывает for controller implementation error.

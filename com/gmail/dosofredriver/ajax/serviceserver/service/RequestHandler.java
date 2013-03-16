@@ -1,6 +1,5 @@
 package com.gmail.dosofredriver.ajax.serviceserver.service;
 
-import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 
 /**
@@ -34,7 +33,7 @@ public interface RequestHandler {
      *  @return
      *          <code>ByteBuffer</code> that will be sent to client.
      */
-    public ByteBuffer initialOutcomingRequest();
+    //public ByteBuffer initialOutcomingRequest();
 
 
 
@@ -45,5 +44,5 @@ public interface RequestHandler {
      *  @return
      *          <code>ByteBuffer</code> that will be sent to client.
      */
-    public ByteBuffer finalOutcomingRequest();
+    //public ByteBuffer finalOutcomingRequest();
 }

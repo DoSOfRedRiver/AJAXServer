@@ -2,8 +2,13 @@
   <library name="json-simple-1.1.1">
     <CLASSES>
       <root url="jar://D:/_development/json-simple-1.1.1.jar!/" />
+      <root url="jar://D:/_development/netty/netty-3.6.3.Final.jar!/" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="file://D:/_development/netty/api" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://D:/_development/netty/src/main/java" />
+    </SOURCES>
   </library>
 </component>

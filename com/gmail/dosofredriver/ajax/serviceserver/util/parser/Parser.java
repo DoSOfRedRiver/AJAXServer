@@ -18,8 +18,8 @@ public class Parser {
      * Default pattern, uses to find method prototype.
      */
     private final Pattern           pattern = Pattern.compile("[a-zA-Z]\\w+\\(([\\w\\s]+)?\\)");
-    private Vector<Class>           methodArgsTypes  = new Vector<Class>();
-    private Vector<String>          methodArgsValues = new Vector<String>();
+    private Vector<Class>           methodArgsTypes  = new Vector<>();
+    private Vector<String>          methodArgsValues = new Vector<>();
     private String                  methodName;
     private String                  source;
     private Matcher                 matcher;
