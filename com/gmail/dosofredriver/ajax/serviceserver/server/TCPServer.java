@@ -11,7 +11,6 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Date: 25.02.13
@@ -55,7 +54,7 @@ public class TCPServer {
 
                 server = new ServerBootstrap(new NioServerSocketChannelFactory(bossExec, workExec, poolSize));
 
-                server.setOption("backlog", 500);
+                server.setOption("backlog", 500);    //todo config
                 server.setOption("connectTimeoutMillis", 10000);
                 server.setPipelineFactory(new ServerPipelineFactory());
 
@@ -65,7 +64,7 @@ public class TCPServer {
 
 
                 if (isLogged) {
-                    logger.log(Level.INFO, "Server started on " + port + "port.");
+                    logger.log(Level.INFO, "Server started on " + port + " port.");
                 }
 
                 System.out.println("Server started on " + port + " port.");

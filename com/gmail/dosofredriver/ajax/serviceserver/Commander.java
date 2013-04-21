@@ -9,7 +9,6 @@ import com.gmail.dosofredriver.ajax.serviceserver.util.view.ViewInterface;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.logging.Logger;
 
 /**
  * Date: 06.03.13
@@ -22,6 +21,7 @@ public class Commander {
     private ServerLogger    logger;
     private TCPServer       server;
     private Thread          serverThread;
+    private Thread          workerThread;
     private Worker          worker;
 
     private boolean isLogged = false;
@@ -35,6 +35,9 @@ public class Commander {
         try {
             logger = new ServerLogger(this.getClass().getName(), "CommanderLog.html");
             server = new TCPServer(777, 4);
+            worker = new Worker();     //todo more variable init
+            worker.setLogger(logger);
+            server.setLogger(logger);
 
             if (logger != null) {
                 isLogged = true;
@@ -52,14 +55,32 @@ public class Commander {
                 server.start();
             }
         });
+        workerThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    worker.start();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();   //todo log this
+                }
+            }
+        });
 
         serverThread.setDaemon(true);
         serverThread.start();
+        workerThread.setDaemon(true);
+        workerThread.start();
     }
 
     public void stopServer() {
-        server.stop();
-        serverThread.interrupt();
+        try {
+            server.stop();
+            serverThread.interrupt();
+            worker.stop();
+            workerThread.interrupt();
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //todo log this
+        }
     }
 
     public boolean deploy() {

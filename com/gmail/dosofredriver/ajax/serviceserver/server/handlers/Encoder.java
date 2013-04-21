@@ -15,10 +15,9 @@ import org.jboss.netty.handler.codec.oneone.OneToOneEncoder;
 public class Encoder extends OneToOneEncoder {
     @Override
     protected Object encode(ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
-        System.out.println("Encode");
         if (msg instanceof Session) {
             return ChannelBuffers.wrappedBuffer(((Session) msg).getData());
-        } else {   System.out.println("EMPTY BUFFER!");
+        } else {
             return ChannelBuffers.EMPTY_BUFFER;
         } //note the writer should manually close channel after the message walk through pipeline
     }

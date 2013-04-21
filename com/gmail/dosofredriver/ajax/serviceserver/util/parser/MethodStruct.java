@@ -1,6 +1,6 @@
 package com.gmail.dosofredriver.ajax.serviceserver.util.parser;
 
-import java.util.Map;
+import java.util.Set;
 
 /**
  * Date: 07.03.13
@@ -8,7 +8,14 @@ import java.util.Map;
  *
  * @author DoSOfRR
  */
-public class MethodStruct<T> {
-    public Map<T, ? extends T>  params;
-    public String               name;
+public class MethodStruct {
+    public Class [] argsTypes;
+    public String   methodName;
+    public Set      params;
+
+    public MethodStruct(String methodName, Set params, Class [] argsTypes) {
+        this.methodName = methodName;
+        this.argsTypes  = argsTypes;
+        this.params     = params;
+    }
 }

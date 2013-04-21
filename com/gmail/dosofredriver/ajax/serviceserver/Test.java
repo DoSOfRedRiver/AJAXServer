@@ -1,6 +1,7 @@
 package com.gmail.dosofredriver.ajax.serviceserver;
 
-import com.gmail.dosofredriver.ajax.serviceserver.server.TCPServer;
+import com.gmail.dosofredriver.ajax.serviceserver.util.invoke.Invoker;
+import com.gmail.dosofredriver.ajax.serviceserver.util.parser.Parser;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,9 +11,30 @@ import com.gmail.dosofredriver.ajax.serviceserver.server.TCPServer;
  * To change this template use File | Settings | File Templates.
  */
 public class Test {
-    public static void main (String ... args) throws InterruptedException {
-        final TCPServer server = new TCPServer();
+    public void azaza(int a) {
+        System.out.println("Azazaa:" + a);
+    }
 
-        server.start();
+    public String summarize(int a, int b) {
+        return "" + (a+b);
+    }
+
+    public static void main (String ... args) throws Exception {
+        String validJSON = "{\n" +
+                "    \"methodName\": \"com.gmail.dosofredriver.ajax.serviceserver.Test.summarize\",\n" +
+                "    \"params\": [\n" +
+                "        {\n" +
+                "            \"type\": \"int\",\n" +
+                "            \"value\": \"1\"\n" +
+                "        },\n" +
+                "\t\t{\n" +
+                "            \"type\": \"int\",\n" +
+                "            \"value\": \"3\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}";
+
+        System.out.println(Invoker.invoke(Parser.parseRequest(validJSON)));
+
     }
 }

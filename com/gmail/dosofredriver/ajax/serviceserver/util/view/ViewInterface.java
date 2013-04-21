@@ -41,7 +41,7 @@ public interface ViewInterface {
 
     /*
      * This method will invoked when an message will arrived.
-     * Method should parse incoming <code>message</code> and
+     * Method should parseRequest incoming <code>message</code> and
      * return result as <code>Commands</code> enum.
      */
     public Commands readMessage(byte [] message) throws IOException;

@@ -31,16 +31,16 @@ public class ConsoleView implements ViewInterface {
 
     @Override
     public void showDefault() throws IOException {
-        os.write("Welcome to server administration panel.".getBytes());
-        os.write("\nType \"-help\" to print help".getBytes());
+        os.write("Welcome to server administration panel.\n".getBytes());
+        os.write("\nType \"-help\" to print help \n".getBytes());
     }
 
     @Override
     public void showHelp() throws IOException {
-        os.write("\nType \"-start\" to start server.".getBytes());
-        os.write("\nType \"-stop\" to stop server.".getBytes());
-        os.write("\nType \"-restart\" to restart server.".getBytes());
-        os.write("\nType \"-help\" to get help.".getBytes());
+        os.write("\nType \"-start\"     to start server.".getBytes());
+        os.write("\nType \"-stop\"      to stop server.".getBytes());
+        os.write("\nType \"-restart\"   to restart server.".getBytes());
+        os.write("\nType \"-help\"      to get help.".getBytes());
     }
 
     @Override

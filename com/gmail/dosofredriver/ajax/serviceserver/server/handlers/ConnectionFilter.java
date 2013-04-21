@@ -86,13 +86,13 @@ public class ConnectionFilter extends SimpleChannelUpstreamHandler {
 
         if (isBlackListOn) {
             if (blackList.contains(addr)) {
-                ctx.getChannel().close();  //todo reject connection
+                ctx.getChannel().close();  //rejects incoming connection
             }
         }
 
         if (isWhiteListOn) {
             if (!whiteList.contains(addr)) {
-                ctx.getChannel().close();  //todo reject connection
+                ctx.getChannel().close();  //rejects incoming connection
             }
         }
     }

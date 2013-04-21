@@ -14,7 +14,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @author DoSOfRR
  */
 public class SessionController {
-    private BlockingQueue<Session>  in;
+    private BlockingQueue<Session> store;
 
     private static SessionController ourInstance = new SessionController();
 
@@ -23,11 +23,11 @@ public class SessionController {
     }
 
     private SessionController() {
-        in  = new LinkedBlockingQueue<>();
+        store = new LinkedBlockingQueue<>();
     }
 
-    public void putSession(Session session) {
-        in.add(session);   //put\add ?
+    public void putSession(Session session) throws InterruptedException {
+        store.put(session);
     }
 
     public void response(Session session) {
@@ -36,6 +36,6 @@ public class SessionController {
     }
 
     public Session getSession() throws InterruptedException {
-        return in.take();  //poll\take ?
+        return store.take();
     }
 }

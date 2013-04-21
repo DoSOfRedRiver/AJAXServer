@@ -1,90 +1,112 @@
 package com.gmail.dosofredriver.ajax.serviceserver.util.parser;
 
-import java.nio.ByteBuffer;
-import java.util.StringTokenizer;
-import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.gmail.dosofredriver.ajax.serviceserver.util.collections.DefaultOrderComparator;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.util.*;
+
 /**
- * The <code>String</code> class is used to parse input string,
- * and get code realised methods.
+ * Date: 29.03.13
+ * Time: 3:22
  *
  * @author DoSOfRR
- *
- * @see    com.gmail.dosofredriver.ajax.serviceserver.service.Service;
  */
 public class Parser {
-    /*
-     * Default pattern, uses to find method prototype.
-     */
-    private final Pattern           pattern = Pattern.compile("[a-zA-Z]\\w+\\(([\\w\\s]+)?\\)");
-    private Vector<Class>           methodArgsTypes  = new Vector<>();
-    private Vector<String>          methodArgsValues = new Vector<>();
-    private String                  methodName;
-    private String                  source;
-    private Matcher                 matcher;
+    public static final String KEY_METHODNAME   = "methodName";
+    public static final String KEY_PARAMS       = "params";
 
-    /*
-     * Allocates a new copy of parser with specified source string.
-     *
-     *  @param source
-     *         String represented to parse.
-     */
-    public Parser(String source) {
-        this.source = source;
-        parse();
+    private static JSONParser parser = new JSONParser();
+
+
+
+    public static MethodStruct parseRequest(String query) throws Exception {
+        Map<String, String> strParams = new TreeMap(new DefaultOrderComparator());
+        String methodName;
+        Set params;
+
+
+
+        JSONObject jsonObject = (JSONObject)parser.parse(query);
+
+        //get method name from request
+        methodName = (String) jsonObject.get(KEY_METHODNAME);
+
+        //get params from request
+        JSONArray  ja = (JSONArray)  jsonObject.get(KEY_PARAMS);
+
+        for (Object param : ja) {
+            strParams.put(
+                    (String) ((JSONObject) param).get("type"),
+                    (String) ((JSONObject) param).get("value")
+            );
+        }
+
+        //get classes from strings
+        Class [] classes = getClasses(strParams.keySet());
+
+        //get parameters
+        params = getInstances(getMap(classes, strParams.values()));
+
+        return new MethodStruct(methodName, params, classes);
     }
 
-    public Parser(ByteBuffer source) {
-        source.flip();
 
-        this.source = byteBufferToString(source);
-        parse();
-    }
 
-    /*
-     * No comments.
-     */
-    private String byteBufferToString(ByteBuffer source) {
-        String result = "";
+    public static Class [] getClasses(Set<String> classNames) throws ClassNotFoundException {
+        Class [] result = new Class[classNames.size()];
 
-        for (int i=0; i<source.limit(); i++) {
-            result += source.get(i);
+        int i=0;
+        for(String name : classNames) {
+            switch (name) {
+                case "int"      : result[i] = int.class;    break;
+                case "long"     : result[i] = long.class;   break;
+                case "boolean"  : result[i] = boolean.class;break;
+                default         : result[i] = Class.forName(name);
+            }
+            i++;
         }
 
         return result;
     }
 
-    public void parse() {
 
-    }
 
-    private void getParameters(String prototype) throws ClassNotFoundException {
-        String src = prototype.substring(prototype.indexOf('(') + 1,prototype.length() - 1);
-        StringTokenizer st = new StringTokenizer(src);
+    private static Set getInstances(Map<Class, String> args) throws Exception {
+        Set result = new TreeSet(new DefaultOrderComparator());
 
-        while (st.hasMoreElements()) {
-            String string = st.nextToken();
-            String value;
-            String  type;
+        for (Map.Entry<Class, String> entry : args.entrySet()) {
+            switch (entry.getKey().toString()) {
+                case "boolean"  : result.add(Boolean.parseBoolean(entry.getValue()));   break;
+                case "long"     : result.add(Long.parseLong(entry.getValue()));         break;
+                case "int"      : result.add(Integer.parseInt(entry.getValue()));       break;
 
-            type  = string.substring(0, string.indexOf('_'));
-            value = string.substring(string.indexOf('_')+1, string.length());
+                default         : result.add(getInstance(entry.getKey(), entry.getValue()));
+            }
 
-            getMethodArgsTypes().add(Class.forName(type));
-            getMethodArgsValues().add(value);
         }
+
+        return result;
     }
 
-    public String getMethodName() {
-        return methodName;
+
+
+    private static<T> T getInstance(Class<T> tClass, String value) throws Exception {
+        return (T)tClass.getConstructor(String.class).newInstance(value);
     }
 
-    public Vector<Class> getMethodArgsTypes() {
-        return methodArgsTypes;
-    }
 
-    public Vector<String> getMethodArgsValues() {
-        return methodArgsValues;
+
+    private static Map<Class, String> getMap(Class [] classes, Collection<String> values) {
+        Map<Class, String> result = new TreeMap(new DefaultOrderComparator());
+
+        int i = 0;
+        for (String value : values) {
+            result.put(classes[i], value);
+            i++;
+        }
+
+        return result;
     }
 }

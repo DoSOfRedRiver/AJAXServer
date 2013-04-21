@@ -19,11 +19,9 @@ public class Decoder extends OneToOneDecoder {
 
     @Override
     protected Object decode(ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
-        System.out.println("decode");
 
         if (msg instanceof ChannelBuffer) {
-            ByteBuffer data;
-            data = ByteBuffer.wrap(((ChannelBuffer) msg).array());
+            ByteBuffer data = ByteBuffer.wrap(((ChannelBuffer) msg).array());
             return new Session(data, channel);
         }
 
