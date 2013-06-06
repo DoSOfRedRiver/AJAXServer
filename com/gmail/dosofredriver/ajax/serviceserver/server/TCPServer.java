@@ -1,5 +1,6 @@
 package com.gmail.dosofredriver.ajax.serviceserver.server;
 
+import com.gmail.dosofredriver.ajax.serviceserver.server.handlers.ConnectionFilter;
 import com.gmail.dosofredriver.ajax.serviceserver.server.pipeline.ServerPipelineFactory;
 import com.gmail.dosofredriver.ajax.serviceserver.util.logger.ServerLogger;
 import org.jboss.netty.bootstrap.ServerBootstrap;
@@ -19,12 +20,16 @@ import java.util.logging.Level;
  * @author DoSOfRR
  */
 public class TCPServer {
+    public static final String  DEFAULT_IP_ADDRESS = "127.0.0.1";
+
     public static final int     DEFAULT_POOL_SIZE   = 4;
     public static final int     DEFAULT_PORT        = 777;
 
-    private Channel         mainChannel;
-    private ServerBootstrap server;
-    private ServerLogger    logger;
+    private ServerPipelineFactory   serverPipeline;
+    private ServerBootstrap         server;
+    private ServerLogger            logger;
+    private Channel                 mainChannel;
+    private String                  address;
 
     private boolean isStarted = false;
     private boolean isLogged  = false;
@@ -33,16 +38,23 @@ public class TCPServer {
     private int port;
 
     public TCPServer() {
-        this(DEFAULT_PORT, DEFAULT_POOL_SIZE);
+        this(DEFAULT_PORT, DEFAULT_POOL_SIZE, DEFAULT_IP_ADDRESS);
     }
 
     public TCPServer(int port) {
-        this(port, DEFAULT_POOL_SIZE);
+        this(port, DEFAULT_POOL_SIZE, DEFAULT_IP_ADDRESS);
     }
 
     public TCPServer(int port, int poolSize) {
+        this(port, poolSize, DEFAULT_IP_ADDRESS);
+    }
+
+    public TCPServer(int port, int poolSize, String address) {
         this.port       = port;
+        this.address    = address;
         this.poolSize   = poolSize;
+
+        serverPipeline = new ServerPipelineFactory();
     }
 
     public void start() {
@@ -56,9 +68,9 @@ public class TCPServer {
 
                 server.setOption("backlog", 500);    //todo config
                 server.setOption("connectTimeoutMillis", 10000);
-                server.setPipelineFactory(new ServerPipelineFactory());
+                server.setPipelineFactory(serverPipeline);
 
-                mainChannel = server.bind(new InetSocketAddress(port));
+                mainChannel = server.bind(new InetSocketAddress(address, port));
 
                 isStarted = true;
 
@@ -111,5 +123,9 @@ public class TCPServer {
 
         this.logger = logger;
         isLogged = true;
+    }
+
+    public void setFilter(ConnectionFilter filter) throws Exception {
+        serverPipeline.getPipeline().addFirst("Filter", filter);
     }
 }

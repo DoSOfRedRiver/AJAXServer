@@ -2,6 +2,7 @@ package com.gmail.dosofredriver.ajax.serviceserver;
 
 import com.gmail.dosofredriver.ajax.serviceserver.server.TCPServer;
 import com.gmail.dosofredriver.ajax.serviceserver.service.worker.Worker;
+import com.gmail.dosofredriver.ajax.serviceserver.util.configure.Configurator;
 import com.gmail.dosofredriver.ajax.serviceserver.util.logger.ServerLogger;
 import com.gmail.dosofredriver.ajax.serviceserver.util.view.ConsoleView;
 import com.gmail.dosofredriver.ajax.serviceserver.util.view.ViewInterface;
@@ -9,6 +10,7 @@ import com.gmail.dosofredriver.ajax.serviceserver.util.view.ViewInterface;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
 
 /**
  * Date: 06.03.13
@@ -17,6 +19,10 @@ import java.io.InputStreamReader;
  * @author DoSOfRR
  */
 public class Commander {
+    public static final String  DEFAULT_CONFIG_PATH = "config/config.txt";
+
+    private String          configPath  = DEFAULT_CONFIG_PATH;
+
     private ViewInterface   view;
     private ServerLogger    logger;
     private TCPServer       server;
@@ -24,27 +30,63 @@ public class Commander {
     private Thread          workerThread;
     private Worker          worker;
 
-    private boolean isLogged = false;
+    private boolean autoStart   = false;
+    private boolean isLogged    = false;
 
-    public Commander(ViewInterface view) {
+    public Commander(ViewInterface view, String ... args) {
         this.view = view;
-        init();
+        init(args);
     }
 
-    private void init() {
+
+
+    private void init(String ... args) {
         try {
-            logger = new ServerLogger(this.getClass().getName(), "CommanderLog.html");
-            server = new TCPServer(777, 4);
-            worker = new Worker();     //todo more variable init
+            parseArgs(args);
+
+            Configurator config = new Configurator(configPath);
+
+            logger = config.getConfiguredLogger();
+            server = config.getConfiguredServer();
+            worker = config.getConfiguredWorker();
             worker.setLogger(logger);
             server.setLogger(logger);
+            server.setFilter(config.getConfiguredFilter());
 
             if (logger != null) {
                 isLogged = true;
                 server.setLogger(logger);
             }
+
+            if (autoStart) {
+                this.startServer();
+            }
         } catch (Exception e) {
             System.err.println("An error occupied while initializing server: \n" + e);
+        }
+    }
+
+    private void parseArgs(String ... args) {
+        for (String arg : args) {
+            String value = null;
+            String type;
+
+            if (arg.contains(":")) {
+                type  = arg.substring(0, arg.indexOf(':'));
+                value = arg.substring(arg.indexOf(':')+1, arg.length());
+            } else {
+                type = arg;
+            }
+
+            switch (type) {
+                case "configpath"   : configPath = "value"; break;
+                case "autostart"    : autoStart  = true;    break;
+
+                default: {
+                    System.out.println("Option " + value + " is not supported!");
+                    System.exit(0);
+                }
+            }
         }
     }
 
@@ -59,9 +101,9 @@ public class Commander {
             @Override
             public void run() {
                 try {
-                    worker.start();
+                    worker.start();        //todo ex
                 } catch (InterruptedException e) {
-                    e.printStackTrace();   //todo log this
+                    logger.log(Level.SEVERE, "Can not start worker!", e);
                 }
             }
         });
@@ -79,7 +121,7 @@ public class Commander {
             worker.stop();
             workerThread.interrupt();
         } catch (InterruptedException e) {
-            e.printStackTrace();  //todo log this
+            logger.log(Level.WARNING, "An error occupied while stopping server", e);
         }
     }
 
@@ -91,7 +133,7 @@ public class Commander {
      * This is a default program entry point.
      */
     public static void main(String ... args) {
-        Commander commander = new Commander(new ConsoleView());
+        Commander commander = new Commander(new ConsoleView(), args);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         boolean run = true;

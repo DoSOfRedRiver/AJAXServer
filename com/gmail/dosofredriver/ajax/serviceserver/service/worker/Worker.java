@@ -3,11 +3,8 @@ package com.gmail.dosofredriver.ajax.serviceserver.service.worker;
 import com.gmail.dosofredriver.ajax.serviceserver.server.session.Session;
 import com.gmail.dosofredriver.ajax.serviceserver.server.session.SessionController;
 import com.gmail.dosofredriver.ajax.serviceserver.service.Service;
-import com.gmail.dosofredriver.ajax.serviceserver.util.invoke.Invoker;
 import com.gmail.dosofredriver.ajax.serviceserver.util.logger.ServerLogger;
-import com.gmail.dosofredriver.ajax.serviceserver.util.parser.Parser;
 
-import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -58,6 +55,7 @@ public class Worker {
                     } catch (Exception e) {
                         if (isLogged) {
                             logger.log(Level.SEVERE, "An error occupied while parsing request!", e);
+                            session.getChannel().close();    //note try to use AutoCloseable
                         }
                     }
                 }
@@ -71,23 +69,6 @@ public class Worker {
 
         if (isLogged) {
             logger.log(Level.INFO, "Worker was manually stopped.");
-        }
-    }
-
-    //test method
-    //todo remove it
-    private void service(Session session) {
-        String request = new String(session.getData().array());
-
-        try {
-            Object result = Invoker.invoke(Parser.parseRequest(request));
-            SessionController.getInstance().response(new Session(ByteBuffer.wrap(result.toString().getBytes()), session.getChannel()));
-        } catch (Exception e) {
-            if (isLogged) {
-                logger.log(Level.WARNING, "An error occupied while parsing request!", e);
-            } else {
-                System.err.println("An error occupied while parsing request! \n" + e);
-            }
         }
     }
 

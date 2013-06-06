@@ -18,7 +18,7 @@ public class ServerPipelineFactory implements ChannelPipelineFactory {
     @Override
     public ChannelPipeline getPipeline() throws Exception {
         ConnectionFilter filter = new ConnectionFilter();
-        filter.setOption(ConnectionFilter.BLACKLIST_ON, "c:\\blacklist.txt");    //todo config
+         //todo config
         ChannelPipeline result = Channels.pipeline(new Decoder(), new Encoder(), new DataReader());
 
         return result;

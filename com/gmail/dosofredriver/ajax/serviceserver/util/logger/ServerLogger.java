@@ -13,8 +13,13 @@ import java.util.logging.Logger;
  */
 public class ServerLogger {
     public final static String DEFAULT_LOG_NAME = "log.html";
+    public final static String DEFAULT_NAME     = "Server logger";
 
     private Logger logger;
+
+    public ServerLogger() throws IOException {
+        init(DEFAULT_NAME, DEFAULT_LOG_NAME);
+    }
 
     public ServerLogger(String name) throws IOException {
         init(name, DEFAULT_LOG_NAME);

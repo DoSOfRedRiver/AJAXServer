@@ -17,16 +17,12 @@ public class Parser {
     public static final String KEY_METHODNAME   = "methodName";
     public static final String KEY_PARAMS       = "params";
 
-    private static JSONParser parser = new JSONParser();
-
-
 
     public static MethodStruct parseRequest(String query) throws Exception {
         Map<String, String> strParams = new TreeMap(new DefaultOrderComparator());
+        JSONParser parser = new JSONParser();
         String methodName;
         Set params;
-
-
 
         JSONObject jsonObject = (JSONObject)parser.parse(query);
 
